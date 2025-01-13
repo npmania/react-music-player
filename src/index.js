@@ -518,6 +518,10 @@ export default class ReactJkMusicPlayer extends PureComponent {
             renderAudioTitle={this.renderAudioTitle}
             shouldShowPlayIcon={shouldShowPlayIcon}
             isResetCoverRotate={isResetCoverRotate}
+            soundValue={soundValue}
+            onAudioMute={this.onAudioMute}
+            onAudioSoundChange={this.onAudioSoundChange}
+            onResetVolume={this.onResetVolume}
           />
         )}
 

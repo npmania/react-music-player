@@ -1,6 +1,10 @@
 import cls from 'classnames'
 import React, { isValidElement, memo } from 'react'
 import PlayModeTip from './PlayModeTip'
+import Slider from 'rc-slider/lib/Slider'
+import {
+  VOLUME_BAR_SLIDER_OPTIONS,
+} from '../config/slider'
 
 const prefix = 'react-jinke-music-player-mobile'
 
@@ -32,6 +36,10 @@ const PlayerMobile = ({
   renderAudioTitle,
   shouldShowPlayIcon,
   isResetCoverRotate,
+  soundValue,
+  onAudioMute,
+  onAudioSoundChange,
+  onResetVolume,
 }) => (
   <div className={cls(prefix, { 'default-bg': !glassBg, 'glass-bg': glassBg })}>
     <PlayModeTip
@@ -120,6 +128,23 @@ const PlayerMobile = ({
         {extendsContent}
         <li className="item" onClick={openAudioListsPanel}>
           {icon.playLists}
+        </li>
+        <li className="item group play-sounds" title={locale.volumeText}>
+          {soundValue === 0 ? (
+            <span className="sounds-icon" onClick={onResetVolume}>
+              {icon.mute}
+            </span>
+          ) : (
+            <span className="sounds-icon" onClick={onAudioMute}>
+              {icon.volume}
+            </span>
+          )}
+          <Slider
+            value={soundValue}
+            onChange={onAudioSoundChange}
+            className="sound-operation"
+            {...VOLUME_BAR_SLIDER_OPTIONS}
+          />
         </li>
       </ul>
     </div>
